@@ -25,7 +25,7 @@ module.exports = async function handler(req, res) {
     }
 
     if (req.method === 'PUT') {
-      const { ObjectId } = require('mongodb');
+      const ObjectId = require('mongoose').Types.ObjectId;
       const id = req.query.id;
       const updates = req.body;
       await db.collection('daily_attendance').updateOne({ _id: new ObjectId(id) }, { $set: updates });
@@ -33,7 +33,7 @@ module.exports = async function handler(req, res) {
     }
 
     if (req.method === 'DELETE') {
-      const { ObjectId } = require('mongodb');
+      const ObjectId = require('mongoose').Types.ObjectId;
       const id = req.query.id;
       await db.collection('daily_attendance').deleteOne({ _id: new ObjectId(id) });
       return res.status(200).json({ success: true });
